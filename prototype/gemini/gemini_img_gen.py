@@ -23,7 +23,7 @@ prompt = (
 )
 
 response = client.models.generate_content(
-    model="gemini-2.5-flash-image",
+    model="models/imagen-4.0-fast-generate-001",
     contents=[prompt],
 )
 
@@ -33,3 +33,7 @@ for part in response.parts:
     elif part.inline_data is not None:
         image = part.as_image()
         image.save("generated_image.png")
+        image.show()
+
+
+

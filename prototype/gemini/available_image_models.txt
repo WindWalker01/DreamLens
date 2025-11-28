@@ -1,0 +1,36 @@
+Model Name: models/gemini-2.0-flash-exp-image-generation
+Display Name: Gemini 2.0 Flash (Image Generation) Experimental
+Supported Methods: []
+------------------------------
+Model Name: models/gemini-2.5-flash-image-preview
+Display Name: Nano Banana
+Supported Methods: []
+------------------------------
+Model Name: models/gemini-2.5-flash-image
+Display Name: Nano Banana
+Supported Methods: []
+------------------------------
+Model Name: models/gemini-3-pro-image-preview
+Display Name: Nano Banana Pro
+Supported Methods: []
+------------------------------
+Model Name: models/imagen-4.0-generate-preview-06-06
+Display Name: Imagen 4 (Preview)
+Supported Methods: []
+------------------------------
+Model Name: models/imagen-4.0-ultra-generate-preview-06-06
+Display Name: Imagen 4 Ultra (Preview)
+Supported Methods: []
+------------------------------
+Model Name: models/imagen-4.0-generate-001
+Display Name: Imagen 4
+Supported Methods: []
+------------------------------
+Model Name: models/imagen-4.0-ultra-generate-001
+Display Name: Imagen 4 Ultra
+Supported Methods: []
+------------------------------
+Model Name: models/imagen-4.0-fast-generate-001
+Display Name: Imagen 4 Fast
+Supported Methods: []
+------------------------------
