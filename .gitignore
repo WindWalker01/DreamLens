@@ -27,3 +27,9 @@ dist-ssr
 # env files
 .env
 .env.*
+
+# pycache files
+__pycache__/
+*.pyc
+*.cpython-312.pyc
+*.pyc
