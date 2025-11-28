@@ -1,0 +1,92 @@
+[
+  {
+    "id": "lr_001",
+    "name": "Nordic Modern Sofa", 
+    "description": "3-seater fabric sofa with wooden legs",
+    "price": 15999,
+    "color": "Beige",
+    "style": "Modern",
+    "category": "furniture"
+  },
+  {
+    "id": "lr_002",
+    "name": "Smart LED TV 55inch",
+    "description": "4K UHD Smart TV with Android TV", 
+    "price": 24999,
+    "color": "Black",
+    "style": "Modern",
+    "category": "electronics"
+  },
+  {
+    "id": "lr_003",
+    "name": "Glass Coffee Table",
+    "description": "Tempered glass table with metal frame",
+    "price": 5999,
+    "color": "Clear", 
+    "style": "Contemporary",
+    "category": "furniture"
+  },
+  {
+    "id": "lr_004",
+    "name": "Floor Standing Lamp",
+    "description": "Adjustable LED floor lamp with remote",
+    "price": 3499,
+    "color": "Silver",
+    "style": "Modern", 
+    "category": "lighting"
+  },
+  {
+    "id": "lr_005",
+    "name": "Decorative Wall Shelf",
+    "description": "Set of 3 floating wooden shelves", 
+    "price": 2999,
+    "color": "Walnut",
+    "style": "Minimalist",
+    "category": "furniture"
+  },
+  {
+    "id": "gm_001", 
+    "name": "Koorui 24inch Gaming Monitor",
+    "description": "144Hz gaming monitor with HDMI",
+    "price": 8999,
+    "color": "Black",
+    "style": "Gaming",
+    "category": "electronics"
+  },
+  {
+    "id": "gm_002",
+    "name": "Aula F75 Mechanical Keyboard",
+    "description": "75% layout RGB mechanical keyboard",
+    "price": 2499, 
+    "color": "White",
+    "style": "Gaming",
+    "category": "electronics"
+  },
+  {
+    "id": "gm_003",
+    "name": "Aula F75 Mechanical Keyboard", 
+    "description": "75% layout RGB mechanical keyboard",
+    "price": 2499,
+    "color": "Black",
+    "style": "Gaming",
+    "category": "electronics"
+  },
+  {
+    "id": "gm_004",
+    "name": "Attack Shark M7 Gaming Mouse",
+    "description": "Wireless gaming mouse 16000DPI",
+    "price": 1299,
+    "color": "White", 
+    "style": "Gaming",
+    "category": "electronics"
+  },
+  {
+    "id": "gm_005",
+    "name": "ErgoPro Gaming Chair",
+    "description": "Ergonomic gaming chair with lumbar support",
+    "price": 12999,
+    "color": "Black",
+    "style": "Gaming", 
+    "category": "furniture"
+  }
+]
