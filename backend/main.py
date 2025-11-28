@@ -30,7 +30,7 @@ async def send_message(chat_message: ChatMessage):
         )
 
 
-@app.get("/chatbot/image")
+@app.get("/chatbot/image/{prompt}")
 async def generate_image_from_pollination(prompt: str):
     """
         Send a prompt to Pollination and returns the image link response from supabase
