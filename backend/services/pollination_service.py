@@ -33,9 +33,9 @@ def generate_image(prompt: str):
 
     if response.status_code == 200:
         image = Image.open(io.BytesIO(response.content))
-        image.save("kontext_result.png")
+        # image.save("kontext_result.png")
         print("Success! Saved as kontext_result.png")
-        return "success"
+        return image.filename
     else:
         print(f"Error {response.status_code}: {response.text}")
         return "error"
