@@ -1,7 +1,12 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body
 from models import ChatMessage, ChatResponse
+from models.chat import ImageRequest, ImageResponse, DescriptionRequest
 from services.gemini_service import generate_content
 from services.pollination_service import generate_image
+
+from services.gemini_service import create_keywords_from_description
+
+from core.prompt_builder import imagine_prompt_builder
 
 app = FastAPI()
 
@@ -30,15 +35,20 @@ async def send_message(chat_message: ChatMessage):
         )
 
 
-@app.get("/chatbot/image/{prompt}")
-async def generate_image_from_pollination(prompt: str):
+@app.post("/chatbot/imagine", response_model=ImageResponse)
+async def generate_image_from_pollination(request: ImageRequest):
     """
         Send a prompt to Pollination and returns the image link response from supabase
     """
     try:
-        return generate_image(prompt)
+        return generate_image(request.prompt)
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Error communicating with Pollination: {str(e)}"
         )
+
+@app.post("/test")
+async def keywords_from_description(description: DescriptionRequest):
+    return imagine_prompt_builder(description.prompt)
+    # return description.prompt
