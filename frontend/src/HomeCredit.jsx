@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Header from './partials/Header';
+import Footer from './partials/Footer';
 
 const HomeCredit = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [prompt, setPrompt] = useState('');
   const baseUrl = "https://www.homecredit.ph";
 
@@ -28,61 +29,7 @@ const HomeCredit = () => {
 
   return (
     <div className="font-sans text-gray-900 overflow-x-hidden">
-      <header className="sticky top-0 z-50 bg-white shadow-sm w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <a href="/" title="Home Credit" className="flex-shrink-0">
-              <img
-                src={imgUrl("/dam/jcr:f8f42554-077c-4929-9d73-51d70c9ef9fd/hc-logo.svg")}
-                alt="Home Credit"
-                className="w-24 h-auto"
-              />
-            </a>
-
-            <div className="hidden lg:flex items-center space-x-8">
-              <a className="text-gray-700 hover:text-[#E11931] font-medium transition-colors" href="/">Home</a>
-              <span className="text-gray-700 hover:text-[#E11931] font-medium cursor-pointer transition-colors">Products</span>
-              <span className="text-gray-700 hover:text-[#E11931] font-medium cursor-pointer transition-colors">Loans & Services</span>
-              <a className="text-gray-700 hover:text-[#E11931] font-medium transition-colors" href="/promos">Promos</a>
-              <span className="text-gray-700 hover:text-[#E11931] font-medium cursor-pointer transition-colors">About Us</span>
-              <span className="text-gray-700 hover:text-[#E11931] font-medium cursor-pointer transition-colors">Help Center</span>
-            </div>
-
-            <div className="hidden lg:flex items-center space-x-4">
-              <span className="text-[#E11931] font-medium cursor-pointer hover:underline">
-                Login
-              </span>
-              <a className="bg-[#E11931] text-white px-5 py-2.5 rounded-md font-semibold hover:bg-red-700 transition-colors" href="/register">
-                Register
-              </a>
-            </div>
-
-            <div className="lg:hidden flex items-center">
-              <button 
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-600 hover:text-gray-900 focus:outline-none"
-              >
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100 py-4 px-4 space-y-3 flex flex-col">
-            <a className="block text-gray-700 font-medium" href="/">Home</a>
-            <span className="block text-gray-700 font-medium">Products</span>
-            <span className="block text-gray-700 font-medium">Loans & Services</span>
-            <a className="block text-gray-700 font-medium" href="/promos">Promos</a>
-            <a className="block text-gray-700 font-medium" href="/stories">Blog</a>
-            <a className="block w-full text-center bg-[#E11931] text-white px-5 py-2.5 rounded-md font-semibold" href="/register">
-              Register
-            </a>
-          </div>
-        )}
-      </header>
+      <Header />
 
       <main className="relative">
         <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
@@ -268,51 +215,7 @@ const HomeCredit = () => {
         </section>
       </main>
 
-      <footer className="bg-white border-t border-gray-200 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 text-center lg:text-left">
-            <div className="flex flex-col items-center lg:items-start">
-              <img src={imgUrl("/dam/jcr:f8f42554-077c-4929-9d73-51d70c9ef9fd/hc-logo.svg")} alt="Home Credit" className="w-24 mb-4" />
-              <p className="text-xs text-gray-500">CORPORATE NAME: HC CONSUMER FINANCE PHILIPPINES, INC.</p>
-            </div>
-            
-            <div>
-              <h6 className="font-bold text-gray-900 mb-4">Products</h6>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="#" className="hover:text-[#E11931]">Mobile Phones</a></li>
-                <li><a href="#" className="hover:text-[#E11931]">Laptops</a></li>
-                <li><a href="#" className="hover:text-[#E11931]">Appliances</a></li>
-                <li><a href="#" className="hover:text-[#E11931]">Furniture</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h6 className="font-bold text-gray-900 mb-4">Services</h6>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="#" className="hover:text-[#E11931]">Product Loans</a></li>
-                <li><a href="#" className="hover:text-[#E11931]">Cash Loans</a></li>
-                <li><a href="#" className="hover:text-[#E11931]">Credit Card</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h6 className="font-bold text-gray-900 mb-4">Support</h6>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="#" className="hover:text-[#E11931]">Contact Us</a></li>
-                <li><a href="#" className="hover:text-[#E11931]">FAQs</a></li>
-                <li><a href="#" className="hover:text-[#E11931]">Privacy Notice</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-100 pt-8 text-center">
-            <p className="text-xs text-gray-400 leading-relaxed max-w-4xl mx-auto">
-              Home Credit Philippines is regulated by the Bangko Sentral ng Pilipinas. <br className="hidden md:inline"/>
-              SEC Reg. Number: CS201301354. Please read carefully the terms and conditions before proceeding with a loan transaction.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
