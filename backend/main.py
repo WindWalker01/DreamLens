@@ -41,7 +41,8 @@ async def generate_image_from_pollination(request: ImageRequest):
         Send a prompt to Pollination and returns the image link response from supabase
     """
     try:
-        image_url = generate_image(request.prompt)
+
+        image_url = generate_image(imagine_prompt_builder(request.prompt))
         if image_url == "error":
             raise HTTPException(status_code=500, detail="Failed to generate image from Pollination")
         return ImageResponse(image=image_url)
