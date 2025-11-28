@@ -32,10 +32,10 @@ def generate_image(prompt: str):
     response = requests.get(base_url, params=params)
 
     if response.status_code == 200:
-        image = Image.open(io.BytesIO(response.content))
+        # image = Image.open(io.BytesIO(response.content))
         # image.save("kontext_result.png")
         print("Success! Saved as kontext_result.png")
-        return image.filename
+        return response.url
     else:
         print(f"Error {response.status_code}: {response.text}")
         return "error"
