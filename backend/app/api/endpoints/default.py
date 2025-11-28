@@ -15,13 +15,13 @@ async def root():
         "description": settings.PROJECT_DESCRIPTION,
         "documentation": "/docs",
         "endpoints": {
-            "chatbot_send": "/api/chatbot/send",
-            "chatbot_imagine": "/api/chatbot/imagine",
-            "generate_image": "/api/generate-image",
-            "cat_image": "/api/cat",
-            "generate_cat": "/api/generate-cat",
-            "test_keywords": "/api/test",
-            "hello": "/api/hello/{name}"
+            "chatbot_send": "/chat/send",
+            "chatbot_imagine": "/chat/imagine",
+            "generate_image": "/test/generate-image",
+            "cat_image": "/test/cat",
+            "generate_cat": "/test/generate-cat",
+            "test_keywords": "/test/prompt-builder",
+            "hello": "/hello/{name}"
         },
         "timestamp": now,
     }
