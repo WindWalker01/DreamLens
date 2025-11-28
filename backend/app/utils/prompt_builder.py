@@ -1,6 +1,6 @@
 # from database import get_supabase
-from services.gemini_service import create_keywords_from_description
-from services.gemini_service import create_imagine_final_prompt
+from app.services.gemini_service import create_keywords_from_description
+from app.services.gemini_service import create_imagine_final_prompt
 
 
 CATALOG = [

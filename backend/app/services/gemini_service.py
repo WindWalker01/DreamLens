@@ -2,8 +2,9 @@ import json
 import re
 
 from google import genai
+from google.genai import types
 from dotenv import load_dotenv
-from models import ChatMessage, ChatResponse
+from app.models import ChatMessage, ChatResponse
 
 # Load environment variables from .env file
 load_dotenv()
@@ -57,6 +58,9 @@ Only output the raw JSON array.
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt,
+        config=types.GenerateContentConfig(
+            response_mime_type="application/json"
+        )
     )
 
     raw_text = response.text.strip()
@@ -68,11 +72,18 @@ Only output the raw JSON array.
     # Extract JSON array using regex (handles cases where text has extra words)
     match = re.search(r'\[[\s\S]*\]', raw_text)
     if not match:
-        raise ValueError("Gemini did not return valid JSON.")
+        print(f"DEBUG: Gemini raw response: {raw_text}")
+        try:
+            return json.loads(raw_text)
+        except json.JSONDecodeError:
+            raise ValueError(f"Gemini did not return valid JSON. Raw response: {raw_text}")
 
     json_text = match.group(0)
 
-    return json.loads(json_text)
+    try:
+        return json.loads(json_text)
+    except json.JSONDecodeError:
+        raise ValueError(f"Gemini returned invalid JSON content. Raw: {json_text}")
 
 
 def create_imagine_final_prompt(description: str, keywords: list, inventory_items: list):
