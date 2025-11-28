@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './partials/Header';
 import Footer from './partials/Footer';
 
 const HomeCredit = () => {
   const [prompt, setPrompt] = useState('');
+  const [loanAmount, setLoanAmount] = useState(50000);
+  const [downPaymentPercent, setDownPaymentPercent] = useState(20);
+  const [term, setTerm] = useState(12);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
   const baseUrl = "https://www.homecredit.ph";
 
   const imgUrl = (path) => {
@@ -15,6 +20,34 @@ const HomeCredit = () => {
     e.preventDefault();
     console.log("User prompt:", prompt);
   };
+
+  const calculateMonthlyPayment = () => {
+    const downPayment = loanAmount * (downPaymentPercent / 100);
+    const financedAmount = loanAmount - downPayment;
+    const monthlyInterestRate = 0.0349; 
+    const totalInterest = financedAmount * monthlyInterestRate * term;
+    const totalAmount = financedAmount + totalInterest;
+    return Math.round(totalAmount / term);
+  };
+
+  const formatCurrency = (value) => {
+    return "₱ " + value.toLocaleString();
+  };
+
+  const placeholderOptions = [
+    "Ask AI: 'What's the best installment plan for an iPhone?'",
+    "Ask AI: 'I need a gaming laptop under ₱3,000 monthly'",
+    "Ask AI: 'How do I apply for a cash loan?'",
+    "Ask AI: 'Show me 0% interest refrigerator deals'",
+    "Ask AI: 'What are the requirements for a loan?'"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholderOptions.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const products = [
     { id: 1, name: "iPhone 15 Pro", category: "Mobile", price: "₱76,990", image: "https://powermaccenter.com/cdn/shop/files/iPhone_15_Pro_Blue_Titanium_PDP_Image_Position-1__en-US_22107126-5b9e-4e4f-b633-899b24443e0d.jpg?v=1695948332" },
@@ -55,8 +88,8 @@ const HomeCredit = () => {
                 </div>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 bg-transparent border-none focus:ring-0 text-gray-900 placeholder-gray-500 text-lg"
-                  placeholder="Ask AI: 'What's the best installment plan for an iPhone?'"
+                  className="w-full px-4 py-3 bg-transparent border-none focus:ring-0 text-gray-900 placeholder-gray-400 text-lg transition-all duration-300"
+                  placeholder={placeholderOptions[placeholderIndex]}
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 />
@@ -72,9 +105,24 @@ const HomeCredit = () => {
             </form>
             <div className="mt-4 flex flex-wrap justify-center gap-2 text-sm text-gray-500">
               <span>Try asking:</span>
-              <button className="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors">Laptop under 40k</button>
-              <button className="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors">Low interest loans</button>
-              <button className="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors">Apply for cash loan</button>
+              <button 
+                onClick={() => setPrompt("Laptop under 40k")}
+                className="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors"
+              >
+                Laptop under 40k
+              </button>
+              <button 
+                onClick={() => setPrompt("Low interest loans")}
+                className="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors"
+              >
+                Low interest loans
+              </button>
+              <button 
+                onClick={() => setPrompt("Apply for cash loan")}
+                className="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors"
+              >
+                Apply for cash loan
+              </button>
             </div>
           </div>
         </section>
@@ -160,22 +208,41 @@ const HomeCredit = () => {
                   <div>
                     <div className="flex justify-between mb-2">
                       <h5 className="font-semibold text-gray-900">Loan Amount</h5>
-                      <span className="font-bold text-[#E11931]">₱ 50,000</span>
+                      <span className="font-bold text-[#E11931]">{formatCurrency(loanAmount)}</span>
                     </div>
-                    <input type="range" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E11931]" min="1000" max="120000" defaultValue="50000" />
+                    <input 
+                      type="range" 
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E11931]" 
+                      min="1000" 
+                      max="120000" 
+                      step="1000"
+                      value={loanAmount}
+                      onChange={(e) => setLoanAmount(Number(e.target.value))}
+                    />
                   </div>
                   <div>
                     <div className="flex justify-between mb-2">
                       <h5 className="font-semibold text-gray-900">Down Payment</h5>
-                      <span className="font-bold text-[#E11931]">20%</span>
+                      <span className="font-bold text-[#E11931]">{downPaymentPercent}%</span>
                     </div>
-                    <input type="range" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E11931]" min="0" max="50" defaultValue="20" />
+                    <input 
+                      type="range" 
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E11931]" 
+                      min="0" 
+                      max="50" 
+                      value={downPaymentPercent}
+                      onChange={(e) => setDownPaymentPercent(Number(e.target.value))}
+                    />
                   </div>
                   <div>
                     <h5 className="font-semibold text-gray-900 mb-3">Term (Months)</h5>
                     <div className="flex gap-3">
                       {[6, 9, 12, 18, 24].map(m => (
-                        <button key={m} className={`flex-1 h-10 rounded-lg border ${m === 12 ? 'border-[#E11931] text-[#E11931] bg-red-50' : 'border-gray-200 text-gray-600 hover:border-gray-300'} flex items-center justify-center font-medium transition-colors text-sm`}>
+                        <button 
+                          key={m} 
+                          onClick={() => setTerm(m)}
+                          className={`flex-1 h-10 rounded-lg border ${term === m ? 'border-[#E11931] text-[#E11931] bg-red-50' : 'border-gray-200 text-gray-600 hover:border-gray-300'} flex items-center justify-center font-medium transition-colors text-sm`}
+                        >
                           {m}
                         </button>
                       ))}
@@ -183,7 +250,7 @@ const HomeCredit = () => {
                   </div>
                   <div className="bg-gray-50 p-4 rounded-xl text-center">
                     <p className="text-sm text-gray-500 mb-1">Estimated Monthly Payment</p>
-                    <p className="text-3xl font-bold text-gray-900">₱ 4,560</p>
+                    <p className="text-3xl font-bold text-gray-900">{formatCurrency(calculateMonthlyPayment())}</p>
                   </div>
                   <button className="block w-full bg-[#E11931] hover:bg-red-700 text-white text-center py-3 rounded-lg font-semibold transition-colors">
                     Apply Now
