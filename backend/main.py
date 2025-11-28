@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from models import ChatMessage, ChatResponse
 from services.gemini_service import generate_content
+from services.pollination_service import generate_image
 
 app = FastAPI()
 
@@ -26,4 +27,18 @@ async def send_message(chat_message: ChatMessage):
         raise HTTPException(
             status_code=500,
             detail=f"Error communicating with Gemini API: {str(e)}"
+        )
+
+
+@app.get("/chatbot/image/{prompt}")
+async def generate_image_from_pollination(prompt: str):
+    """
+        Send a prompt to Pollination and returns the image link response from supabase
+    """
+    try:
+        return generate_image(prompt)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error communicating with Pollination: {str(e)}"
         )
