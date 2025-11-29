@@ -15,3 +15,8 @@ def get_supabase_client() -> Client:
 
 # Global supabase client instance
 supabase: Client = get_supabase_client()
+
+
+def get_all_products():
+    response = supabase.table('product_catalog').select('*').execute()
+    return  response.data

@@ -1,6 +1,6 @@
-from database.db import get_all_products
-from services.gemini_service import create_keywords_from_description
-from services.gemini_service import create_imagine_final_prompt
+from app.database.db import get_all_products
+from app.services.gemini_service import create_keywords_from_description
+from app.services.gemini_service import create_imagine_final_prompt
 
 
 CATALOG = get_all_products()
