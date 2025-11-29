@@ -40,10 +40,10 @@ const Header = () => {
             <div className="hidden lg:flex items-center space-x-8">
               <Link className={getLinkClass('/')} to="/">Home</Link>
               <Link className={getLinkClass('/products')} to="/products">Products</Link>
-              <span className="text-gray-700 hover:text-[#E11931] font-medium cursor-pointer transition-colors">Loans & Services</span>
+              <Link className={getLinkClass('/loans-services')} to="/loans-services">Loans & Services</Link>
               <Link className={getLinkClass('/promos')} to="/promos">Promos</Link>
-              <span className="text-gray-700 hover:text-[#E11931] font-medium cursor-pointer transition-colors">About Us</span>
-              <span className="text-gray-700 hover:text-[#E11931] font-medium cursor-pointer transition-colors">Help Center</span>
+              <Link className={getLinkClass('/about-us')} to="/about-us">About Us</Link>
+              <Link className={getLinkClass('/help-center')} to="/help-center">Help Center</Link>
             </div>
 
             <div className="hidden lg:flex items-center space-x-4">
