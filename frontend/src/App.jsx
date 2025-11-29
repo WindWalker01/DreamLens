@@ -5,6 +5,8 @@ import LoansServices from './Loans/LoansServices.jsx';
 import Promos from './Promos/Promos.jsx';
 import About from './About/About.jsx';
 import Help from './Help/Help.jsx';
+import Login from './Login/Login.jsx';
+import Register from './Register/Register.jsx';
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
             <Route path="/about-us" element={<About />} />
             <Route path="/help-center" element={<Help />} />
             <Route path="/stories" element={<HomeCredit />} /> 
-            <Route path="/register" element={<HomeCredit />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
        </Routes>
     </BrowserRouter>
   );

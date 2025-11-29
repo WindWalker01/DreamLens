@@ -47,12 +47,12 @@ const Header = () => {
             </div>
 
             <div className="hidden lg:flex items-center space-x-4">
-              <span className="text-[#E11931] font-medium cursor-pointer hover:underline">
+              <Link className="text-[#E11931] font-medium cursor-pointer hover:underline" to="/login">
                 Login
-              </span>
-              <a className="bg-[#E11931] text-white px-5 py-2.5 rounded-md font-semibold hover:bg-red-700 transition-colors" href="/register">
+              </Link>
+              <Link className="bg-[#E11931] text-white px-5 py-2.5 rounded-md font-semibold hover:bg-red-700 transition-colors" to="/register">
                 Register
-              </a>
+              </Link>
             </div>
 
             <div className="lg:hidden flex items-center">
@@ -72,12 +72,12 @@ const Header = () => {
           <div className="lg:hidden bg-white border-t border-gray-100 py-4 px-4 space-y-3 flex flex-col">
             <Link to="/" className={getMobileLinkClass('/')}>Home</Link>
             <Link to="/products" className={getMobileLinkClass('/products')}>Products</Link>
-            <span className="block text-gray-700 font-medium">Loans & Services</span>
+            <Link to="/loans-services" className={getMobileLinkClass('/loans-services')}>Loans & Services</Link>
             <Link to="/promos" className={getMobileLinkClass('/promos')}>Promos</Link>
-            <Link to="/stories" className={getMobileLinkClass('/stories')}>Blog</Link>
-            <a className="block w-full text-center bg-[#E11931] text-white px-5 py-2.5 rounded-md font-semibold" href="/register">
-              Register
-            </a>
+            <Link to="/about-us" className={getMobileLinkClass('/about-us')}>About Us</Link>
+            <Link to="/help-center" className={getMobileLinkClass('/help-center')}>Help Center</Link>
+            <Link to="/login" className={getMobileLinkClass('/login')}>Login</Link>
+            <Link to="/register" className={getMobileLinkClass('/register')}>Register</Link>
           </div>
         )}
       </header>
