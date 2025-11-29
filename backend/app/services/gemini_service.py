@@ -4,7 +4,7 @@ import re
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
-from models import ChatMessage, ChatResponse
+from app.models import ChatMessage, ChatResponse
 
 # Load environment variables from .env file
 load_dotenv()

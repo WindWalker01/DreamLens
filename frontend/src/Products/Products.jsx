@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import Header from './partials/Header';
-import Footer from './partials/Footer';
+import Header from '../partials/Header';
+import Footer from '../partials/Footer';
+import ItemPreview from './ItemPreview';
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [prompt, setPrompt] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const categories = ["All", "Mobile", "Laptops", "Tablets", "Appliances", "Furniture", "Gaming", "Transportation"];
 
@@ -126,7 +128,7 @@ const Products = () => {
   });
 
   return (
-    <div className="font-sans text-gray-900 bg-gray-50 min-h-screen flex flex-col">
+    <div className={`font-sans text-gray-900 bg-gray-50 min-h-screen flex flex-col ${selectedProduct ? 'overflow-hidden h-screen' : ''}`}>
       <Header />
 
       <main className="flex-grow">
@@ -223,7 +225,10 @@ const Products = () => {
                                         </p>
                                     </div>
 
-                                    <button className="w-full bg-[#E11931] text-white py-3 rounded-xl font-bold hover:bg-red-700 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30">
+                                    <button 
+                                        onClick={() => setSelectedProduct(product)}
+                                        className="w-full bg-[#E11931] text-white py-3 rounded-xl font-bold hover:bg-red-700 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30"
+                                    >
                                         <span>Compute Loan</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -253,6 +258,13 @@ const Products = () => {
             )}
         </div>
       </main>
+
+      {selectedProduct && (
+        <ItemPreview 
+            product={selectedProduct} 
+            onClose={() => setSelectedProduct(null)} 
+        />
+      )}
 
       <Footer />
     </div>
