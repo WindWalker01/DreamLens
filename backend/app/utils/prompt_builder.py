@@ -1,26 +1,9 @@
-# from database import get_supabase
-from app.services.gemini_service import create_keywords_from_description
-from app.services.gemini_service import create_imagine_final_prompt
+from database.db import get_all_products
+from services.gemini_service import create_keywords_from_description
+from services.gemini_service import create_imagine_final_prompt
 
 
-CATALOG = [
-  {
-    "name": "Ergonomic Office Chair",
-    "category": "chair",
-    "colors": ["white", "gray"],
-    "materials": ["mesh", "plastic"],
-    "style": ["minimalist", "modern"],
-    "image_url": "https://merchant.com/chair001.jpg"
-  },
-  {
-    "name": "Light Wood Study Desk",
-    "category": "desk",
-    "colors": ["light wood", "white"],
-    "materials": ["oak", "laminate"],
-    "style": ["scandinavian", "minimalist"],
-    "image_url": "https://merchant.com/desk004.jpg"
-  }
-]
+CATALOG = get_all_products()
 
 
 
@@ -29,8 +12,6 @@ def imagine_prompt_builder(user_description: str):
     matched_items = match_catalog_items(keywords)
 
     return create_imagine_final_prompt(user_description, keywords, matched_items)
-
-
 
 
 
