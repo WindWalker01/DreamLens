@@ -37,8 +37,26 @@ def generate_content(chat_message: ChatMessage) -> ChatResponse:
         model=chat_message.model
     )
 
-def get_key_products_from_image(image: str):
-    pass
+def get_key_products_from_description(description: str, products: str):
+    prompt = f"""
+     Determine what product is the most suited from the description:
+     ONLY OUTPUT THE PICKED PRODUCTS IN THE SAME FORMAT THAT I GAVE YOU
+     DONT INCLUDE ```json ```. DO NOT FORMAT IT  ONLY OUTPUT THE RAW JSON ARRAY.  NO BACKTICKS NO EXPLANATIONS
+     
+     {description}
+     
+     PRODUCTS:
+     {products}
+     """
+
+
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt
+    )
+    print("FILTERED PRODUCTS \n\n\n")
+    print(response.text)
+    return response.text
 
 
 def create_keywords_from_description(description: str):
@@ -87,7 +105,7 @@ Only output the raw JSON array.
 
 
 def create_imagine_final_prompt(description: str, keywords: list, inventory_items: list):
-    inventory_summary = summarize_inventory_items(inventory_items)
+    inventory_summary = summarize_inventory_items(description, inventory_items)
 
     system_prompt =f"""
    You are a style-to-catalog mapper. 
@@ -125,7 +143,7 @@ def create_imagine_final_prompt(description: str, keywords: list, inventory_item
     return response.text
 
 
-def summarize_inventory_items(inventory_items: list):
+def summarize_inventory_items(description: str, inventory_items: list):
     summaries = []
     for item in inventory_items:
         colors = ", ".join(item.get("colors", []))
@@ -140,5 +158,7 @@ def summarize_inventory_items(inventory_items: list):
             f"style: {style}."
         )
         summaries.append(summary)
+
+    # get_key_products_from_description(description ,"\n".join(f"- {s}" for s in summaries))
 
     return "\n".join(f"- {s}" for s in summaries)
